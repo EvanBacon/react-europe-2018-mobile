@@ -1,4 +1,4 @@
-import {Constants, Haptic, WebBrowser} from 'expo';
+import {Constants, Haptics, WebBrowser} from 'expo';
 import React from 'react';
 import {
   Animated,
@@ -52,7 +52,7 @@ export default class Details extends React.Component {
     if (Platform.OS === 'ios') {
       this._listener = this.state.scrollY.addListener(({value}) => {
         if (value < -150) {
-          Haptic.impact(Haptic.ImpactFeedbackStyle.Medium);
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           this.props.navigation.goBack();
           if (this._listener) {
             this.state.scrollY.removeListener(this._listener);
