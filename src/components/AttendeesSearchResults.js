@@ -6,7 +6,8 @@ import {
 import _ from 'lodash';
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
-import {RectButton, ScrollView} from 'react-native-gesture-handler';
+
+import {RectButton, ScrollView} from './PlatformComponents';
 
 import {Colors} from '../constants';
 import {getContactTwitter} from '../utils';
@@ -17,8 +18,10 @@ import {BoldText, RegularText, SemiBoldText} from './StyledText';
 class AttendeesSearchResultRow extends React.Component {
   constructor(props) {
     super(props);
-    const event = this.props.event;
-    const SpeakersAndTalks = event && evnt.speakers ? event.speakers : [];
+    const {event = {}} = props;
+    const SpeakersAndTalks = Array.isArray(event.speakers)
+      ? event.speakers
+      : [];
     this.SpeakersData = [{data: SpeakersAndTalks, title: 'Speakers'}];
   }
 

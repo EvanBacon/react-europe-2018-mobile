@@ -1,12 +1,12 @@
 import React from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
 import FadeIn from 'react-native-fade-in-image';
-import {RectButton} from 'react-native-gesture-handler';
 import {withNavigation} from 'react-navigation';
 
 import {Colors, FontSizes} from '../constants';
 import {conferenceHasEnded} from '../utils';
 import CachedImage from './CachedImage';
+import {RectButton} from './PlatformComponents';
 import SaveIconWhenSaved from './SaveIconWhenSaved';
 import {BoldText, RegularText, SemiBoldText} from './StyledText';
 

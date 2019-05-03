@@ -18,8 +18,7 @@ import {getContactTwitter, openTwitter, sendEmail} from '../utils';
 @withNavigation
 export default class ContactCard extends React.Component {
   render() {
-    let {contact, onPress} = this.props;
-    const {email} = contact;
+    let {contact} = this.props;
     const bio = this.getContactBio();
     const twitter = getContactTwitter(contact);
     return (

@@ -1,16 +1,31 @@
-import { Ionicons } from '@expo/vector-icons';
-import { AppLoading, Asset, Constants, Font, Linking, SplashScreen, Updates } from 'expo';
+import {Ionicons} from '@expo/vector-icons';
+import {
+  AppLoading,
+  Asset,
+  Constants,
+  Font,
+  Linking,
+  SplashScreen,
+  Updates,
+} from 'expo';
 import React from 'react';
-import { ApolloProvider } from 'react-apollo';
-import { Animated, AsyncStorage, Dimensions, StatusBar, StyleSheet, View } from 'react-native';
-import { Assets as StackAssets } from 'react-navigation-stack';
+import {ApolloProvider} from 'react-apollo';
+import {
+  Animated,
+  AsyncStorage,
+  Dimensions,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
+import {Assets as StackAssets} from 'react-navigation-stack';
 
-import { GQL } from './src/constants';
+import {GQL} from './src/constants';
 import GET_SCHEDULE from './src/data/schedulequery';
 import AppNavigator from './src/Navigation';
-import { saveSchedule, setEvent } from './src/utils';
+import {saveSchedule, setEvent} from './src/utils';
 import client from './src/utils/gqlClient';
-import { loadSavedTalksAsync } from './src/utils/storage';
+import {loadSavedTalksAsync} from './src/utils/storage';
 
 export default class App extends React.Component {
   state = {
@@ -67,7 +82,7 @@ export default class App extends React.Component {
           duration: 400,
           useNativeDriver: true,
         }).start(() => {
-          this.setState({ isSplashAnimationComplete: true });
+          this.setState({isSplashAnimationComplete: true});
         });
       });
     }
@@ -77,7 +92,7 @@ export default class App extends React.Component {
     return Promise.all([
       loadSavedTalksAsync(),
       this._loadEventAsync(),
-      this._loadLinkingUrlAsync()
+      this._loadLinkingUrlAsync(),
     ]);
   };
 

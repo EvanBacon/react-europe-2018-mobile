@@ -1,12 +1,22 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
+import {Ionicons} from '@expo/vector-icons';
 import _ from 'lodash';
 import moment from 'moment';
 import React from 'react';
-import {createAppContainer, createStackNavigator} from 'react-navigation';
 import {
   createBottomTabNavigator,
+  createAppContainer,
+  createStackNavigator,
   createMaterialTopTabNavigator,
-} from 'react-navigation-tabs';
+} from 'react-navigation';
+import {createBrowserApp} from '@react-navigation/web';
+// import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
+import {Platform} from 'react-native';
+
+const createApp = Platform.select({
+  // web: createBrowserApp,
+  default: createAppContainer,
+});
+// const createMaterialTopTabNavigator = createBottomTabNavigator;
 
 import {Colors} from './constants';
 import Screens from './screens';
@@ -194,4 +204,4 @@ const Navigation = createStackNavigator(
   }
 );
 
-export default createAppContainer(Navigation);
+export default createApp(Navigation);

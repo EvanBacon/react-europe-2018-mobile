@@ -1,6 +1,6 @@
 import {Dimensions, Platform} from 'react-native';
 import {Header} from 'react-navigation';
-
+global.module = global.module || {};
 const X_WIDTH = 375;
 const X_HEIGHT = 812;
 const {height: D_HEIGHT, width: D_WIDTH} = Dimensions.get('window');

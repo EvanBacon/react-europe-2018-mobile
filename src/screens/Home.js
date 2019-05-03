@@ -11,7 +11,8 @@ import {
   View,
 } from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
-import {RectButton} from 'react-native-gesture-handler';
+
+import {RectButton} from '../components/PlatformComponents';
 import {NavigationActions, withNavigation} from 'react-navigation';
 
 import AnimatedScrollView from '../components/AnimatedScrollView';
@@ -27,12 +28,10 @@ class Home extends React.Component {
     scrollY: new Animated.Value(0),
   };
   checkUuidOnLoad(props) {
-    console.log(
-      'checking props screenprops',
-      props.screenProps.initialLinkingUri
-    );
-    if (props && props.screenProps && props.screenProps.initialLinkingUri) {
-      const url = props.screenProps.initialLinkingUri;
+    const {screenProps = {}} = props;
+    console.log('checking props screenprops', screenProps.initialLinkingUri);
+    if (props && props.screenProps && screenProps.initialLinkingUri) {
+      const url = screenProps.initialLinkingUri;
       console.log('check url from home', url);
       const uuid = url ? url.split('?uuid=')[1] : '';
       console.log('check uuid from home', uuid);
@@ -55,6 +54,7 @@ class Home extends React.Component {
   }
   render() {
     const {scrollY} = this.state;
+    const {screenProps = {}} = this.props;
     const headerOpacity = scrollY.interpolate({
       inputRange: [0, 150],
       outputRange: [0, 1],
@@ -111,7 +111,7 @@ class Home extends React.Component {
             </View>
           </View>
 
-          <DeferredHomeContent event={this.props.screenProps.event} />
+          <DeferredHomeContent event={screenProps.event} />
           <OverscrollView />
         </AnimatedScrollView>
 
@@ -152,14 +152,6 @@ class Home extends React.Component {
 
 @withNavigation
 class DeferredHomeContent extends React.Component {
-  state = {
-    ready: Platform.OS === 'android' ? false : true,
-    hasCameraPermission: null,
-    Notification: {},
-    tickets: [],
-    event: this.props.event,
-  };
-
   async getTickets() {
     try {
       const value = await AsyncStorage.getItem('@MySuperStore2019:tickets');
@@ -173,6 +165,13 @@ class DeferredHomeContent extends React.Component {
   }
   constructor(props) {
     super(props);
+    this.state = {
+      ready: Platform.OS !== 'android',
+      hasCameraPermission: null,
+      Notification: {},
+      tickets: [],
+      event: props.event,
+    };
     this.getTickets();
   }
 

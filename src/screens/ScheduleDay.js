@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import React from 'react';
 import {SectionList, StyleSheet, View} from 'react-native';
-import {RectButton, ScrollView} from 'react-native-gesture-handler';
 
 import LoadingPlaceholder from '../components/LoadingPlaceholder';
 import SaveIconWhenSaved from '../components/SaveIconWhenSaved';
 import {BoldText, RegularText, SemiBoldText} from '../components/StyledText';
+import {RectButton, ScrollView} from '../components/PlatformComponents';
 import {convertUtcDateToEventTimezoneHour} from '../utils';
 
 class ScheduleRow extends React.Component {
@@ -51,17 +51,20 @@ export default function ScheduleDay(options) {
     constructor(props) {
       super(props);
 
-      const event = this.props.screenProps.event;
-      const FullSchedule = event.groupedSchedule;
-      const schedule = _.find(
-        FullSchedule,
-        schedule => schedule.title === options.day
-      );
+      const {screenProps = {}} = props;
+      const event = screenProps.event;
+      if (event) {
+        const FullSchedule = event.groupedSchedule;
+        const schedule = _.find(
+          FullSchedule,
+          schedule => schedule.title === options.day
+        );
 
-      const slotsByTime = _.groupBy(schedule.slots, slot => slot.startDate);
-      this.slotsData = _.map(slotsByTime, (data, time) => {
-        return {data, title: convertUtcDateToEventTimezoneHour(time)};
-      });
+        const slotsByTime = _.groupBy(schedule.slots, slot => slot.startDate);
+        this.slotsData = _.map(slotsByTime, (data, time) => {
+          return {data, title: convertUtcDateToEventTimezoneHour(time)};
+        });
+      }
     }
     render() {
       return (

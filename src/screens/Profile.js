@@ -9,12 +9,12 @@ import {
   View,
 } from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
-import {RectButton} from 'react-native-gesture-handler';
 import {withNavigation} from 'react-navigation';
 
 import {SemiBoldText} from '../components/StyledText';
 import Tickets from '../components/Tickets';
 import {Colors, FontSizes} from '../constants';
+import {RectButton} from '../components/PlatformComponents';
 
 class Profile extends React.Component {
   state = {

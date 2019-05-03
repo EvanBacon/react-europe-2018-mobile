@@ -6,8 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {RectButton, ScrollView} from 'react-native-gesture-handler';
-
+import {RectButton, ScrollView} from '../components/PlatformComponents';
 import LoadingPlaceholder from '../components/LoadingPlaceholder';
 import {RegularText} from '../components/StyledText';
 import {Colors, FontSizes} from '../constants';

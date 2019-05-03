@@ -1,5 +1,9 @@
 import {ApolloClient} from 'apollo-client';
 import {HttpLink} from 'apollo-link-http';
+/**
+ * Uncaught ReferenceError: module is not defined
+    at Module.../../../../react-europe-2018-mobile/node_modules/immutable-tuple/dist/tuple.mjs (bundle.js:51949)
+ */
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {GQL} from '../constants';
 
