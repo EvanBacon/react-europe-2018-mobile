@@ -7,7 +7,10 @@
   "scripts": {
     "test": "jest",
     "devtools": "react-devtools",
-    "lint": "eslint . --ext .js --quiet"
+    "lint": "eslint . --ext .js --quiet",
+    "serve": "serve ./web-build",
+    "predeploy:web": "expo build:web --no-polyfill",
+    "deploy:web": "netlify deploy --prod"
   },
   "dependencies": {
     "@react-navigation/web": "^1.0.0-alpha.7",
@@ -40,6 +43,7 @@
     "react-native-web": "^0.11.2",
     "react-navigation": "~3.9",
     "react-navigation-tabs": "^2",
+    "serve": "^11.0.0",
     "urql": "^0.2.0"
   },
   "devDependencies": {
