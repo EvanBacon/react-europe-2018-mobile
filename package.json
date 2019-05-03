@@ -35,7 +35,7 @@
     "react-native-fade-in-image": "git://github.com/expo/react-native-fade-in-image.git",
     "react-native-gravatar": "^1.0.2",
     "react-native-markdown-renderer": "^3.2.8",
-    "react-native-paper": "^1.2.6",
+    "react-native-paper": "2.15.2",
     "react-native-qrcode": "^0.2.6",
     "react-native-web": "^0.11.2",
     "react-navigation": "~3.9",

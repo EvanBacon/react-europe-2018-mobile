@@ -53,6 +53,7 @@ class Attendees extends React.Component {
     return (
       <View style={{flex: 1}}>
         <Searchbar
+          inputStyle={{outlineStyle: 'none'}}
           onChangeText={text => this.queryThrottle(text)}
           placeholder="Search for conference attendees"
           style={styles.textInput}
