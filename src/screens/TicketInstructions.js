@@ -1,12 +1,11 @@
 import React from 'react';
 import {Animated, AsyncStorage, Platform, View} from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
-// import Markdown from 'react-native-markdown-renderer';
-const Markdown = () => null;
 import {Button, Card, CardContent, Title} from 'react-native-paper';
 import {withNavigation} from 'react-navigation';
 
 import AnimatedScrollView from '../components/AnimatedScrollView';
+import {Markdown} from '../components/PlatformComponents';
 import {Colors, Layout} from '../constants';
 
 class TicketInstructions extends React.Component {
@@ -94,7 +93,7 @@ class DeferredTicketInstructionsContent extends React.Component {
           <CardContent>
             <Title>{ticket.firstName + ' ' + ticket.lastName} </Title>
             <Title>Ticket Ref: {ticket.ref} </Title>
-            <Markdown styles={markdownStyles}>{ticket.mobileMessage}</Markdown>
+            <Markdown>{ticket.mobileMessage}</Markdown>
           </CardContent>
         </Card>
         <Button raised onPress={() => this.props.navigation.goBack()}>
@@ -117,9 +116,5 @@ const OverscrollView = () => (
     }}
   />
 );
-
-const markdownStyles = {
-  text: {},
-};
 
 export default TicketInstructions;

@@ -9,11 +9,9 @@ import {
 } from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
 import {Gravatar} from 'react-native-gravatar';
-// import Markdown from 'react-native-markdown-renderer';
-const Markdown = () => null;
 import {Button, Card, CardContent, Title} from 'react-native-paper';
 import {withNavigation} from 'react-navigation';
-
+import {Markdown} from '../components/PlatformComponents';
 import AnimatedScrollView from '../components/AnimatedScrollView';
 import {Colors, FontSizes, Layout} from '../constants';
 
@@ -127,9 +125,7 @@ class DeferredCheckedInAttendeeInfoContent extends React.Component {
             </Title>
             <Title>Ticket Name: {checkedInAttendee.ticket.name} </Title>
             <Title>Ticket Ref: {checkedInAttendee.ref} </Title>
-            <Markdown styles={markdownStyles}>
-              {checkedInAttendee.checkinMessage}
-            </Markdown>
+            <Markdown>{checkedInAttendee.checkinMessage}</Markdown>
           </CardContent>
         </Card>
         <Button
@@ -166,10 +162,6 @@ const OverscrollView = () => (
 );
 
 const BORDER_RADIUS = 3;
-
-const markdownStyles = {
-  text: {},
-};
 
 const styles = StyleSheet.create({
   roundedProfileImage: {

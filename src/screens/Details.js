@@ -11,12 +11,12 @@ import {
 } from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
 import FadeIn from 'react-native-fade-in-image';
-// import Markdown from 'react-native-markdown-renderer';
-const Markdown = () => null;
+
 import AnimatedScrollView from '../components/AnimatedScrollView';
 import CachedImage from '../components/CachedImage';
 import CloseButton from '../components/CloseButton';
 import NavigationBar from '../components/NavigationBar';
+import {Markdown} from '../components/PlatformComponents';
 import SaveButton from '../components/SaveButton';
 import {BoldText, RegularText, SemiBoldText} from '../components/StyledText';
 import {Colors, FontSizes, Layout} from '../constants';
@@ -222,7 +222,7 @@ export default class Details extends React.Component {
             {talkScreen ? null : (
               <View>
                 <SemiBoldText style={styles.sectionHeader}>Bio</SemiBoldText>
-                <Markdown styles={markdownStyles}>{speaker.bio}</Markdown>
+                <Markdown>{speaker.bio}</Markdown>
               </View>
             )}
             {talk ? (
@@ -236,7 +236,7 @@ export default class Details extends React.Component {
               </SemiBoldText>
             ) : null}
             {talk ? (
-              <Markdown styles={markdownStyles}>
+              <Markdown>
                 {talk.description.replace(
                   '**Click here to see covered subjects**',
                   ''
@@ -254,7 +254,7 @@ export default class Details extends React.Component {
                     <SemiBoldText key={speaker.id + talk.title}>
                       {speaker.name}
                     </SemiBoldText>
-                    <Markdown styles={markdownStyles}>{speaker.bio}</Markdown>
+                    <Markdown>{speaker.bio}</Markdown>
                   </View>
                 ))}
               </View>
@@ -336,9 +336,6 @@ export default class Details extends React.Component {
     }
   };
 }
-const markdownStyles = {
-  // text: {},
-};
 
 const styles = StyleSheet.create({
   container: {},
