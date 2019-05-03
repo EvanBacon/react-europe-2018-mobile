@@ -1,5 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, Platform, View} from 'react-native';
+
 import {Colors} from '../constants';
 
 // All this does is briefly render a loading indicator when you
@@ -11,9 +12,12 @@ export default class LoadingPlaceholder extends React.Component {
 
   componentDidMount() {
     if (!this.state.isReady) {
-      setTimeout(() => {
-        this.setState({isReady: true});
-      }, Platform.OS === 'ios' ? 250 : 500);
+      setTimeout(
+        () => {
+          this.setState({isReady: true});
+        },
+        Platform.OS === 'ios' ? 250 : 500
+      );
     }
   }
 

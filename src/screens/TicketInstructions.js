@@ -1,12 +1,13 @@
 import React from 'react';
-import {Animated, Platform, View, AsyncStorage} from 'react-native';
+import {Animated, AsyncStorage, Platform, View} from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
+// import Markdown from 'react-native-markdown-renderer';
+const Markdown = () => null;
+import {Button, Card, CardContent, Title} from 'react-native-paper';
 import {withNavigation} from 'react-navigation';
 
 import AnimatedScrollView from '../components/AnimatedScrollView';
 import {Colors, Layout} from '../constants';
-import {Button, Card, CardContent, Title} from 'react-native-paper';
-import Markdown from 'react-native-markdown-renderer';
 
 class TicketInstructions extends React.Component {
   state = {

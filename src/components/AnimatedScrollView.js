@@ -1,4 +1,4 @@
-import {ScrollView} from 'react-navigation';
-import {Animated} from 'react-native';
+import {Animated, ScrollView} from 'react-native';
+// import {ScrollView} from 'react-navigation';
 
 export default Animated.createAnimatedComponent(ScrollView);

@@ -1,14 +1,14 @@
 import React from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
-import {RectButton} from 'react-native-gesture-handler';
 import FadeIn from 'react-native-fade-in-image';
+import {RectButton} from 'react-native-gesture-handler';
 import {withNavigation} from 'react-navigation';
 
-import SaveIconWhenSaved from './SaveIconWhenSaved';
-import CachedImage from './CachedImage';
-import {BoldText, RegularText, SemiBoldText} from './StyledText';
-import {conferenceHasEnded} from '../utils';
 import {Colors, FontSizes} from '../constants';
+import {conferenceHasEnded} from '../utils';
+import CachedImage from './CachedImage';
+import SaveIconWhenSaved from './SaveIconWhenSaved';
+import {BoldText, RegularText, SemiBoldText} from './StyledText';
 
 @withNavigation
 export default class TalkCard extends React.Component {

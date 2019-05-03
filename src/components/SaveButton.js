@@ -1,6 +1,7 @@
+import {Ionicons} from '@expo/vector-icons';
 import React from 'react';
 import {BorderlessButton} from 'react-native-gesture-handler';
-import {Ionicons} from '@expo/vector-icons';
+
 import {Icons} from '../constants';
 import {toggleSaved, withSaveState} from '../utils/storage';
 

@@ -1,17 +1,16 @@
 import React from 'react';
 import {
-  TouchableOpacity,
   AsyncStorage,
   FlatList,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import {ScrollView, RectButton} from 'react-native-gesture-handler';
+import {RectButton, ScrollView} from 'react-native-gesture-handler';
 
-import {FontSizes, Colors} from '../constants';
-import MenuButton from '../components/MenuButton';
-import {RegularText} from '../components/StyledText';
 import LoadingPlaceholder from '../components/LoadingPlaceholder';
+import {RegularText} from '../components/StyledText';
+import {Colors, FontSizes} from '../constants';
 
 const BORDER_RADIUS = 3;
 export class StaffCheckinListRow extends React.Component {

@@ -1,3 +1,4 @@
+import {BarCodeScanner, Permissions} from 'expo';
 import React from 'react';
 import {
   ActivityIndicator,
@@ -7,8 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {BarCodeScanner, Permissions} from 'expo';
-import {withNavigation, SafeAreaView} from 'react-navigation';
+import {SafeAreaView, withNavigation} from 'react-navigation';
 
 @withNavigation
 export default class QRScreen extends React.Component {

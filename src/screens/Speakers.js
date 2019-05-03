@@ -1,14 +1,12 @@
 import React from 'react';
 import {SectionList, StyleSheet, View} from 'react-native';
 import FadeIn from 'react-native-fade-in-image';
-import {ScrollView, RectButton} from 'react-native-gesture-handler';
-import {getSpeakerTalk} from '../utils';
+import {RectButton, ScrollView} from 'react-native-gesture-handler';
 
-import {Colors} from '../constants';
-import MenuButton from '../components/MenuButton';
 import CachedImage from '../components/CachedImage';
-import {BoldText, SemiBoldText, RegularText} from '../components/StyledText';
 import LoadingPlaceholder from '../components/LoadingPlaceholder';
+import {BoldText, RegularText, SemiBoldText} from '../components/StyledText';
+import {getSpeakerTalk} from '../utils';
 
 class SpeakerRow extends React.Component {
   render() {

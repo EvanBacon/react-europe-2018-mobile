@@ -1,18 +1,16 @@
 import React from 'react';
 import {ActivityIndicator, Platform, StyleSheet, View} from 'react-native';
-import {GQL} from '../constants';
+import {withNavigation} from 'react-navigation';
+
+import {Colors, FontSizes, GQL} from '../constants';
 import NEXT_SCHEDULE_ITEMS from '../data/NextScheduleItems';
+import {
+  conferenceHasEnded,
+  convertUtcDateToEventTimezoneDaytime,
+} from '../utils';
 import client from '../utils/gqlClient';
 import {RegularText, SemiBoldText} from './StyledText';
 import TalkCard from './TalkCard';
-import {Colors, FontSizes} from '../constants';
-import {findRandomTalk, findNextTalksAfterDate} from '../data';
-import _ from 'lodash';
-import {withNavigation} from 'react-navigation';
-import {
-  convertUtcDateToEventTimezoneDaytime,
-  conferenceHasEnded,
-} from '../utils';
 
 @withNavigation
 export default class TalksUpNext extends React.Component {
@@ -86,7 +84,9 @@ export default class TalksUpNext extends React.Component {
     if (this.state.fetching) {
       return (
         <View style={{marginLeft: 8, marginTop: 3}}>
-          <ActivityIndicator color={Platform.OS === 'android' ? Colors.blue : '#888'} />
+          <ActivityIndicator
+            color={Platform.OS === 'android' ? Colors.blue : '#888'}
+          />
         </View>
       );
     }

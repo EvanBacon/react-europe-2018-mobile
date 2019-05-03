@@ -1,9 +1,9 @@
 import React from 'react';
 import {Alert, AsyncStorage} from 'react-native';
-import {query} from 'urql';
+
+import QR_CHECKIN_QUERY from '../../data/qrCheckinQuery';
 import client from '../../utils/gqlClient';
 import QRScreen from './QRScreen';
-import QR_CHECKIN_QUERY from '../../data/qrCheckinQuery';
 
 export default class QRCheckinScannerModalNavigation extends React.Component {
   state = {

@@ -1,7 +1,6 @@
-import React from 'react';
-import {View, Platform, StyleSheet} from 'react-native';
-
 import {Ionicons} from '@expo/vector-icons';
+import React from 'react';
+import {Platform, StyleSheet, View} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
 class CloseButton extends React.PureComponent {

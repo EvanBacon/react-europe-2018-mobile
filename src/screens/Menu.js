@@ -1,20 +1,17 @@
+import {Ionicons} from '@expo/vector-icons';
 import React, {Component} from 'react';
 import {
-  View,
-  Image,
-  Text,
-  Button,
-  Platform,
-  Constants,
   FlatList,
-  StyleSheet,
-  TouchableOpacity,
+  Image,
   StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import Navigationbar from '../components/NavigationBar';
-import {Ionicons} from '@expo/vector-icons';
-import {Colors, Layout} from '../constants';
+
 import CachedImage from '../components/CachedImage';
+import {Colors, Layout} from '../constants';
 
 class MenuScreen extends Component {
   static navigationOptions = {
@@ -103,11 +100,7 @@ class MenuScreen extends Component {
                 <Text style={{fontSize: 20, marginHorizontal: 16, flex: 1}}>
                   {item.key}
                 </Text>
-                <Ionicons
-                  name="ios-arrow-forward"
-                  size={24}
-                  color="#999"
-                />
+                <Ionicons name="ios-arrow-forward" size={24} color="#999" />
               </View>
             </TouchableOpacity>
           )}

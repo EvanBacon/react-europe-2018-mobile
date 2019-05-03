@@ -1,23 +1,20 @@
+import {Permissions} from 'expo';
 import React from 'react';
 import {
-  Animated,
-  Linking,
-  Platform,
-  StyleSheet,
-  ScrollView,
-  View,
+  Alert,
   AsyncStorage,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  View,
 } from 'react-native';
-import {Permissions} from 'expo';
-import {RectButton} from 'react-native-gesture-handler';
 import {View as AnimatableView} from 'react-native-animatable';
+import {RectButton} from 'react-native-gesture-handler';
 import {withNavigation} from 'react-navigation';
 
-import NavigationBar from '../components/NavigationBar';
-import Tickets from '../components/Tickets';
-import MenuButton from '../components/MenuButton';
 import {SemiBoldText} from '../components/StyledText';
-import {Colors, FontSizes, Layout} from '../constants';
+import Tickets from '../components/Tickets';
+import {Colors, FontSizes} from '../constants';
 
 class Profile extends React.Component {
   state = {
@@ -112,24 +109,12 @@ class DeferredProfileContent extends React.Component {
         key: 'QRScanner',
       });
     } else {
-      alert(
+      Alert.alert(
         'You need to manually enable camera permissions in your operating system settings app'
       );
     }
   };
 }
-
-const OverscrollView = () => (
-  <View
-    style={{
-      position: 'absolute',
-      top: -400,
-      height: 400,
-      left: 0,
-      right: 0,
-    }}
-  />
-);
 
 const ClipBorderRadius = ({children, style}) => {
   return (

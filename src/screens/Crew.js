@@ -1,20 +1,18 @@
+import {WebBrowser} from 'expo';
 import React from 'react';
 import {
   FlatList,
-  StyleSheet,
-  View,
-  TouchableOpacity,
   Linking,
+  StyleSheet,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import FadeIn from 'react-native-fade-in-image';
 import {ScrollView} from 'react-native-gesture-handler';
-import {WebBrowser} from 'expo';
 
-import {Colors} from '../constants';
-import MenuButton from '../components/MenuButton';
-import {BoldText, SemiBoldText, RegularText} from '../components/StyledText';
-import LoadingPlaceholder from '../components/LoadingPlaceholder';
 import CachedImage from '../components/CachedImage';
+import LoadingPlaceholder from '../components/LoadingPlaceholder';
+import {BoldText, RegularText, SemiBoldText} from '../components/StyledText';
 
 class CrewRow extends React.Component {
   render() {

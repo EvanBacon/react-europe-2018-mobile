@@ -1,13 +1,12 @@
+import {Notifications, Permissions} from 'expo';
 import React from 'react';
 import {Alert, AsyncStorage} from 'react-native';
-import {Permissions, Notifications} from 'expo';
-import QRScreen from './QRScreen';
-import {query} from 'urql';
-import {GQL} from '../../constants';
 
-import client from '../../utils/gqlClient';
+import {GQL} from '../../constants';
 import QR_QUERY from '../../data/qrQuery';
 import UPDATE_PUSH_TOKEN_QUERY from '../../data/updatePushTokenQuery';
+import client from '../../utils/gqlClient';
+import QRScreen from './QRScreen';
 
 export default class QRScannerModalNavigation extends React.Component {
   state = {
@@ -16,8 +15,8 @@ export default class QRScannerModalNavigation extends React.Component {
   async setTickets(tickets) {
     try {
       await AsyncStorage.setItem('@MySuperStore2019:tickets', tickets);
-      console.log('set tickets to tickets:')
-      console.log(tickets)
+      console.log('set tickets to tickets:');
+      console.log(tickets);
     } catch (err) {
       console.log(err);
       return [];

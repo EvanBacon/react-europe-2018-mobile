@@ -1,19 +1,18 @@
-import React from 'react';
-import {StyleSheet, View, FlatList} from 'react-native';
-import {ScrollView, RectButton} from 'react-native-gesture-handler';
 import {
   Entypo,
-  MaterialIcons,
   MaterialCommunityIcons,
+  MaterialIcons,
 } from '@expo/vector-icons';
 import _ from 'lodash';
+import React from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
+import {RectButton, ScrollView} from 'react-native-gesture-handler';
 
 import {Colors} from '../constants';
-import {BoldText, SemiBoldText, RegularText} from './StyledText';
+import {getContactTwitter} from '../utils';
 import GravatarImage from './GravatarImage';
 import HighlightableText from './HighlightableText';
-
-import {getContactTwitter} from '../utils';
+import {BoldText, RegularText, SemiBoldText} from './StyledText';
 
 class AttendeesSearchResultRow extends React.Component {
   constructor(props) {

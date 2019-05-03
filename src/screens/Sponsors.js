@@ -1,14 +1,13 @@
+import {WebBrowser} from 'expo';
 import React from 'react';
 import {SectionList, StyleSheet, View} from 'react-native';
 import FadeIn from 'react-native-fade-in-image';
-import {WebBrowser} from 'expo';
-import {ScrollView, RectButton} from 'react-native-gesture-handler';
+import {RectButton, ScrollView} from 'react-native-gesture-handler';
 
-import {Layout, FontSizes, Colors} from '../constants';
-import MenuButton from '../components/MenuButton';
-import {SemiBoldText, RegularText} from '../components/StyledText';
-import LoadingPlaceholder from '../components/LoadingPlaceholder';
 import CachedImage from '../components/CachedImage';
+import LoadingPlaceholder from '../components/LoadingPlaceholder';
+import {RegularText, SemiBoldText} from '../components/StyledText';
+import {Colors, FontSizes, Layout} from '../constants';
 
 const ClipBorderRadius = ({children, style}) => {
   return (

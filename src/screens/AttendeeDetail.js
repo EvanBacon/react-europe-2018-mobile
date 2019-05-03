@@ -1,3 +1,5 @@
+import {Constants} from 'expo';
+import _ from 'lodash';
 import React from 'react';
 import {
   Animated,
@@ -7,18 +9,15 @@ import {
   View,
 } from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
-import {Button} from 'react-native-paper';
-import {Constants} from 'expo';
 import FadeIn from 'react-native-fade-in-image';
-import _ from 'lodash';
+import {Button} from 'react-native-paper';
 
 import AnimatedScrollView from '../components/AnimatedScrollView';
-import NavigationBar from '../components/NavigationBar';
-import {Colors, FontSizes, Layout} from '../constants';
-import {RegularText, SemiBoldText} from '../components/StyledText';
 import GravatarImage from '../components/GravatarImage';
-import CloseButton from '../components/CloseButton';
-import {sendEmail, openTwitter, addContact, getContactTwitter} from '../utils';
+import NavigationBar from '../components/NavigationBar';
+import {RegularText, SemiBoldText} from '../components/StyledText';
+import {Colors, FontSizes, Layout} from '../constants';
+import {addContact, getContactTwitter, openTwitter, sendEmail} from '../utils';
 
 export default class AttendeeDetail extends React.Component {
   static navigationOptions = {

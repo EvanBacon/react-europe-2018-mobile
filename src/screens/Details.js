@@ -1,27 +1,26 @@
+import {Constants, Haptic, WebBrowser} from 'expo';
 import React from 'react';
 import {
   Animated,
+  Linking,
   Platform,
   StyleSheet,
   TouchableOpacity,
   View,
-  Linking,
-  Text,
   WebView,
 } from 'react-native';
-import {Constants, Haptic, WebBrowser} from 'expo';
-import FadeIn from 'react-native-fade-in-image';
 import {View as AnimatableView} from 'react-native-animatable';
-
+import FadeIn from 'react-native-fade-in-image';
+// import Markdown from 'react-native-markdown-renderer';
+const Markdown = () => null;
 import AnimatedScrollView from '../components/AnimatedScrollView';
-import NavigationBar from '../components/NavigationBar';
-import {Colors, FontSizes, Layout} from '../constants';
-import {RegularText, BoldText, SemiBoldText} from '../components/StyledText';
-import {getSpeakerTalk, convertUtcDateToEventTimezoneHour} from '../utils';
-import SaveButton from '../components/SaveButton';
 import CachedImage from '../components/CachedImage';
 import CloseButton from '../components/CloseButton';
-import Markdown from 'react-native-markdown-renderer';
+import NavigationBar from '../components/NavigationBar';
+import SaveButton from '../components/SaveButton';
+import {BoldText, RegularText, SemiBoldText} from '../components/StyledText';
+import {Colors, FontSizes, Layout} from '../constants';
+import {convertUtcDateToEventTimezoneHour, getSpeakerTalk} from '../utils';
 
 class SavedButtonNavigationItem extends React.Component {
   render() {
@@ -51,8 +50,8 @@ export default class Details extends React.Component {
 
   componentDidMount() {
     if (Platform.OS === 'ios') {
-      this._listener = this.state.scrollY.addListener(({ value }) => {
-        if (value < - 150) {
+      this._listener = this.state.scrollY.addListener(({value}) => {
+        if (value < -150) {
           Haptic.impact(Haptic.ImpactFeedbackStyle.Medium);
           this.props.navigation.goBack();
           if (this._listener) {

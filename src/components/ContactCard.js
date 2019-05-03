@@ -1,18 +1,19 @@
 import React from 'react';
-import {Text, Platform, StyleSheet, View} from 'react-native';
-import {withNavigation} from 'react-navigation';
-import GravatarImage from '../components/GravatarImage';
-import {sendEmail, openTwitter, getContactTwitter} from '../utils';
-import {Colors, FontSizes} from '../constants';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import {
   Button,
+  Card,
   CardActions,
   CardContent,
-  Title,
   Paragraph,
-  Card,
+  Title,
 } from 'react-native-paper';
+import {withNavigation} from 'react-navigation';
+
 import CachedImage from '../components/CachedImage';
+import GravatarImage from '../components/GravatarImage';
+import {Colors, FontSizes} from '../constants';
+import {getContactTwitter, openTwitter, sendEmail} from '../utils';
 
 @withNavigation
 export default class ContactCard extends React.Component {

@@ -1,25 +1,21 @@
+import _ from 'lodash';
 import React from 'react';
+import {Query} from 'react-apollo';
 import {
   Animated,
-  Platform,
-  Text,
-  StyleSheet,
-  View,
   AsyncStorage,
   LayoutAnimation,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
 import {Searchbar} from 'react-native-paper';
 import {withNavigation} from 'react-navigation';
-import {Query} from 'react-apollo';
-import _ from 'lodash';
 
-import NavigationBar from '../components/NavigationBar';
-import MenuButton from '../components/MenuButton';
 import AttendeesSearchResults from '../components/AttendeesSearchResults';
-
-import {GQL} from '../constants';
-import {Colors, Layout} from '../constants';
+import {Colors, GQL, Layout} from '../constants';
 import GET_ATTENDEES from '../data/attendeesquery';
 import {getContactTwitter} from '../utils';
 
@@ -48,12 +44,12 @@ class Attendees extends React.Component {
   };
 
   render() {
-    const {scrollY} = this.state;
-    const headerOpacity = scrollY.interpolate({
-      inputRange: [0, 150],
-      outputRange: [0, 1],
-      extrapolate: 'clamp',
-    });
+    // const {scrollY} = this.state;
+    // const headerOpacity = scrollY.interpolate({
+    //   inputRange: [0, 150],
+    //   outputRange: [0, 1],
+    //   extrapolate: 'clamp',
+    // });
     return (
       <View style={{flex: 1}}>
         <Searchbar

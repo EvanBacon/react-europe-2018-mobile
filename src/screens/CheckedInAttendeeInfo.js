@@ -1,21 +1,21 @@
 import React from 'react';
 import {
   Animated,
-  Platform,
-  Text,
-  StyleSheet,
-  View,
   AsyncStorage,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
+import {Gravatar} from 'react-native-gravatar';
+// import Markdown from 'react-native-markdown-renderer';
+const Markdown = () => null;
+import {Button, Card, CardContent, Title} from 'react-native-paper';
 import {withNavigation} from 'react-navigation';
 
 import AnimatedScrollView from '../components/AnimatedScrollView';
 import {Colors, FontSizes, Layout} from '../constants';
-import {Gravatar} from 'react-native-gravatar';
-
-import {Button, Card, CardContent, Title} from 'react-native-paper';
-import Markdown from 'react-native-markdown-renderer';
 
 class CheckedInAttendeeInfo extends React.Component {
   state = {

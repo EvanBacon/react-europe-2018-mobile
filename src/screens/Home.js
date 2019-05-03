@@ -1,26 +1,23 @@
+import {Ionicons} from '@expo/vector-icons';
+import {Linking, Notifications, WebBrowser} from 'expo';
 import React from 'react';
 import {
   Animated,
-  Linking,
-  Platform,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
   AsyncStorage,
+  Image,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import {WebBrowser, Notifications} from 'expo';
-import {RectButton} from 'react-native-gesture-handler';
-import {NavigationActions} from 'react-navigation';
 import {View as AnimatableView} from 'react-native-animatable';
-import {Ionicons} from '@expo/vector-icons';
-import {withNavigation} from 'react-navigation';
+import {RectButton} from 'react-native-gesture-handler';
+import {NavigationActions, withNavigation} from 'react-navigation';
 
 import AnimatedScrollView from '../components/AnimatedScrollView';
 import NavigationBar from '../components/NavigationBar';
-import TalksUpNext from '../components/TalksUpNext';
-import MenuButton from '../components/MenuButton';
 import {SemiBoldText} from '../components/StyledText';
+import TalksUpNext from '../components/TalksUpNext';
 import {Colors, FontSizes, Layout} from '../constants';
 import {HideWhenConferenceHasEnded, ShowWhenConferenceHasEnded} from '../utils';
 import {saveNewContact} from '../utils/storage';
@@ -129,7 +126,7 @@ class Home extends React.Component {
   };
   _handleRedirect = url => {
     this.setState({url});
-    let {path, queryParams} = Expo.Linking.parse(url);
+    let {path, queryParams} = Linking.parse(url);
     console.log(url);
     console.log(path);
     console.log(queryParams);
@@ -203,11 +200,12 @@ class DeferredHomeContent extends React.Component {
         case 'newURL':
           WebBrowser.openBrowserAsync(notification.data.url);
           break;
-        case 'newContact':
+        case 'newContact': {
           console.log(notification);
           let contact = notification.data.data;
           saveNewContact(contact, navigation);
           break;
+        }
         default:
           console.log('ok');
       }

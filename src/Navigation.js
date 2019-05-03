@@ -1,22 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import _ from 'lodash';
-import {View, Text, StatusBar} from 'react-native';
+import moment from 'moment';
+import React from 'react';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
 import {
   createBottomTabNavigator,
   createMaterialTopTabNavigator,
 } from 'react-navigation-tabs';
 
-import Schedule from './data/schedule.json';
-import moment from 'moment';
-import {Colors, FontSizes, Layout} from './constants';
-
+import {Colors} from './constants';
 import Screens from './screens';
-import QRScannerModalNavigation from './screens/QRScreens/Identify';
 import QRCheckinScannerModalNavigation from './screens/QRScreens/CheckIn';
 import QRContactScannerModalNavigation from './screens/QRScreens/Contact';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import QRScannerModalNavigation from './screens/QRScreens/Identify';
 
 class DynamicScheduleNavigation extends React.Component {
   state = {
@@ -37,7 +33,7 @@ class DynamicScheduleNavigation extends React.Component {
 
     // Sort schedule
     let navSchedule = {};
-    _.each(fullSchedule, (day, i) => {
+    _.each(fullSchedule, day => {
       navSchedule[day.title] = {
         screen: Screens.ScheduleDay({
           day: day.title,
@@ -100,63 +96,53 @@ const DefaultStackConfig = {
 
 const MenuNavigation = createStackNavigator(
   {
-    Menu: {screen: Screens.Menu},
-    Speakers: {screen: Screens.Speakers},
-    Crew: {screen: Screens.Crew},
-    Sponsors: {screen: Screens.Sponsors},
-    Attendees: {screen: Screens.Attendees},
-    AttendeeDetail: {screen: Screens.AttendeeDetail},
+    Menu: Screens.Menu,
+    Speakers: Screens.Speakers,
+    Crew: Screens.Crew,
+    Sponsors: Screens.Sponsors,
+    Attendees: Screens.Attendees,
+    AttendeeDetail: Screens.AttendeeDetail,
   },
   DefaultStackConfig
 );
 
 const ScheduleStackNavigator = createStackNavigator(
   {
-    Schedule: {
-      screen: DynamicScheduleNavigation,
-    },
+    Schedule: DynamicScheduleNavigation,
   },
   DefaultStackConfig
 );
 
 const ProfileNavigator = createStackNavigator(
   {
-    Profile: {
-      screen: Screens.Profile,
-    },
+    Profile: Screens.Profile,
   },
   DefaultStackConfig
 );
 
 const ContactsNavigator = createStackNavigator(
   {
-    Contacts: {
-      screen: Screens.Contacts,
-    },
+    Contacts: Screens.Contacts,
   },
   DefaultStackConfig
 );
 
 const StaffCheckinListsNavigation = createStackNavigator(
   {
-    StaffCheckinListsList: {
-      screen: Screens.StaffCheckinLists,
-    },
+    StaffCheckinListsList: Screens.StaffCheckinLists,
   },
   DefaultStackConfig
 );
 
 const PrimaryTabNavigator = createBottomTabNavigator(
   {
-    Home: {
-      screen: Screens.Home,
-    },
-    Profile: {screen: ProfileNavigator},
-    Schedule: {
-      screen: ScheduleStackNavigator,
-    },
-    Contacts: {screen: ContactsNavigator},
-    Menu: {screen: MenuNavigation},
+    Home: Screens.Home,
+
+    Profile: ProfileNavigator,
+    Schedule: ScheduleStackNavigator,
+
+    Contacts: ContactsNavigator,
+    Menu: MenuNavigation,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -189,17 +175,17 @@ const PrimaryTabNavigator = createBottomTabNavigator(
 
 const Navigation = createStackNavigator(
   {
-    Primary: {screen: PrimaryTabNavigator},
-    AttendeeDetail: {screen: Screens.AttendeeDetail},
-    TicketInstructions: {screen: Screens.TicketInstructions},
+    Primary: PrimaryTabNavigator,
+    AttendeeDetail: Screens.AttendeeDetail,
+    TicketInstructions: Screens.TicketInstructions,
 
-    CheckedInAttendeeInfo: {screen: Screens.CheckedInAttendeeInfo},
-    QRScanner: {screen: QRScannerModalNavigation},
-    QRCheckinScanner: {screen: QRCheckinScannerModalNavigation},
-    QRContactScanner: {screen: QRContactScannerModalNavigation},
-    StaffCheckinLists: {screen: StaffCheckinListsNavigation},
+    CheckedInAttendeeInfo: Screens.CheckedInAttendeeInfo,
+    QRScanner: QRScannerModalNavigation,
+    QRCheckinScanner: QRCheckinScannerModalNavigation,
+    QRContactScanner: QRContactScannerModalNavigation,
+    StaffCheckinLists: StaffCheckinListsNavigation,
 
-    Details: {screen: Screens.Details},
+    Details: Screens.Details,
   },
   {
     ...DefaultStackConfig,

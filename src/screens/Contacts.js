@@ -1,34 +1,18 @@
 import React from 'react';
 import {
-  Animated,
-  Linking,
-  Platform,
-  StyleSheet,
-  ScrollView,
   AsyncStorage,
+  Platform,
+  ScrollView,
+  StyleSheet,
   View,
 } from 'react-native';
-import {Asset, LinearGradient, WebBrowser, Video} from 'expo';
-import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
-import {NavigationActions} from 'react-navigation';
-import FadeIn from 'react-native-fade-in-image';
 import {View as AnimatableView} from 'react-native-animatable';
-import {Ionicons} from '@expo/vector-icons';
+import {RectButton} from 'react-native-gesture-handler';
 import {withNavigation} from 'react-navigation';
 
 import MyContacts from '../components/MyContacts';
-import NavigationBar from '../components/NavigationBar';
-import MenuButton from '../components/MenuButton';
-import VideoBackground from '../components/VideoBackground';
-import {BoldText, SemiBoldText} from '../components/StyledText';
-import {connectDrawerButton} from '../Navigation';
-import {Colors, FontSizes, Layout} from '../constants';
-import {Speakers, Talks} from '../data';
-import {
-  HideWhenConferenceHasStarted,
-  HideWhenConferenceHasEnded,
-  ShowWhenConferenceHasEnded,
-} from '../utils';
+import {SemiBoldText} from '../components/StyledText';
+import {Colors, FontSizes} from '../constants';
 
 class Contacts extends React.Component {
   render() {
@@ -52,7 +36,7 @@ class DeferredContactsContent extends React.Component {
 
   async getTickets() {
     try {
-      const value = await AsyncStorage.getItem('@MySuperStore2019:contacts');
+      let value = await AsyncStorage.getItem('@MySuperStore2019:contacts');
       if (value === null) {
         value = '[]';
       }

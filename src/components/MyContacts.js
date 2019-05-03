@@ -1,11 +1,11 @@
 import React from 'react';
-import {Alert, Clipboard, View, AsyncStorage, StyleSheet} from 'react-native';
-import {BorderlessButton, RectButton} from 'react-native-gesture-handler';
-import {sendEmail, openTwitter, getContactTwitter} from '../utils';
+import {Alert, AsyncStorage, Clipboard, StyleSheet, View} from 'react-native';
+import {RectButton} from 'react-native-gesture-handler';
 
-import {SemiBoldText} from './StyledText';
+import {Colors, FontSizes} from '../constants';
+import {getContactTwitter} from '../utils';
 import ContactCard from './ContactCard';
-import {FontSizes, Colors} from '../constants';
+import {SemiBoldText} from './StyledText';
 
 export default class MyContacts extends React.Component {
   state = {

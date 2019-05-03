@@ -1,6 +1,7 @@
-import React from 'react';
-import CachedImage from './CachedImage';
 import md5 from 'crypto-js/md5';
+import React from 'react';
+
+import CachedImage from './CachedImage';
 
 export default class GravatarImage extends React.PureComponent {
   render() {

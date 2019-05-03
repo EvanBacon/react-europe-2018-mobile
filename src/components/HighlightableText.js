@@ -1,7 +1,7 @@
 // Local implementation of 'react-native-highlight-words'
+import {findAll} from 'highlight-words-core';
 import React from 'react';
 import {Text} from 'react-native';
-import {findAll} from 'highlight-words-core';
 
 /**
  * Highlights all occurrences of search terms (searchText) within a string (textToHighlight).

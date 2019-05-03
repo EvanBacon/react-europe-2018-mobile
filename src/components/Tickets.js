@@ -1,14 +1,14 @@
 import React from 'react';
-import {StyleSheet, View, AsyncStorage} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {Title} from 'react-native-paper';
 
-import {RegularText} from './StyledText';
-import TicketCard from './TicketCard';
 import {Colors, FontSizes} from '../constants';
 import {
-  convertUtcDateToEventTimezoneDaytime,
   conferenceHasEnded,
+  convertUtcDateToEventTimezoneDaytime,
 } from '../utils';
-import {Title} from 'react-native-paper';
+import {RegularText} from './StyledText';
+import TicketCard from './TicketCard';
 
 export default class Tickets extends React.Component {
   render() {

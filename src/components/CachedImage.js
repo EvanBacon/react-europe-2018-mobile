@@ -1,7 +1,7 @@
-import React from 'react';
-import {Image, View, StyleSheet} from 'react-native';
-import {Asset, FileSystem} from 'expo';
 import sha256 from 'crypto-js/sha256';
+import {Asset, FileSystem} from 'expo';
+import React from 'react';
+import {Image, StyleSheet, View} from 'react-native';
 
 export default class CachedImage extends React.Component {
   state = {

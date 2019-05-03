@@ -1,13 +1,12 @@
 import React from 'react';
 import {AsyncStorage} from 'react-native';
-import {query} from 'urql';
 
 import {GQL} from '../../constants';
+import QR_CONTACT_QUERY from '../../data/qrContactQuery';
 import {addContact} from '../../utils';
 import client from '../../utils/gqlClient';
-import QRScreen from './QRScreen';
 import {saveNewContact} from '../../utils/storage';
-import QR_CONTACT_QUERY from '../../data/qrContactQuery';
+import QRScreen from './QRScreen';
 
 export default class QRContactScannerModalNavigation extends React.Component {
   _handleContactBarCodeRead = async data => {

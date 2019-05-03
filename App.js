@@ -1,34 +1,16 @@
+import { Ionicons } from '@expo/vector-icons';
+import { AppLoading, Asset, Constants, Font, Linking, SplashScreen, Updates } from 'expo';
 import React from 'react';
-import {ApolloProvider, Query} from 'react-apollo';
-import {
-  Asset,
-  AppLoading,
-  Constants,
-  Font,
-  SplashScreen,
-  Updates,
-  Linking,
-} from 'expo';
-import {
-  Animated,
-  Platform,
-  Image,
-  StatusBar,
-  StyleSheet,
-  View,
-  AsyncStorage,
-  Dimensions,
-  Easing,
-} from 'react-native';
-import {Ionicons} from '@expo/vector-icons';
-import {GQL} from './src/constants';
-import {loadSavedTalksAsync} from './src/utils/storage';
-import GET_SCHEDULE from './src/data/schedulequery';
-import {setEvent, saveSchedule} from './src/utils';
-import client from './src/utils/gqlClient';
-import {Assets as StackAssets} from 'react-navigation-stack';
+import { ApolloProvider } from 'react-apollo';
+import { Animated, AsyncStorage, Dimensions, StatusBar, StyleSheet, View } from 'react-native';
+import { Assets as StackAssets } from 'react-navigation-stack';
 
+import { GQL } from './src/constants';
+import GET_SCHEDULE from './src/data/schedulequery';
 import AppNavigator from './src/Navigation';
+import { saveSchedule, setEvent } from './src/utils';
+import client from './src/utils/gqlClient';
+import { loadSavedTalksAsync } from './src/utils/storage';
 
 export default class App extends React.Component {
   state = {
