@@ -1,23 +1,8 @@
 import {Ionicons} from '@expo/vector-icons';
-import {
-  AppLoading,
-  Asset,
-  Constants,
-  Font,
-  Linking,
-  SplashScreen,
-  Updates,
-} from 'expo';
+import {AppLoading, Asset, Font, Linking, SplashScreen, Updates} from 'expo';
 import React from 'react';
 import {ApolloProvider} from 'react-apollo';
-import {
-  Animated,
-  AsyncStorage,
-  Dimensions,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
+import {Animated, AsyncStorage, Platform, View} from 'react-native';
 import {Assets as StackAssets} from 'react-navigation-stack';
 
 import {GQL} from './src/constants';
@@ -27,6 +12,7 @@ import {saveSchedule, setEvent} from './src/utils';
 import client from './src/utils/gqlClient';
 import {loadSavedTalksAsync} from './src/utils/storage';
 
+const SHOULD_ANIMATE_IN = true;
 export default class App extends React.Component {
   state = {
     isAppReady: false,
@@ -37,15 +23,19 @@ export default class App extends React.Component {
   splashVisibility = new Animated.Value(1);
 
   componentDidMount() {
-    Updates.addListener(({type}) => {
-      if (type === Updates.EventType.DOWNLOAD_FINISHED) {
-        if (this.state.isAppReady) {
-          this._promptForReload();
-        } else {
-          this._shouldPromptForReload = true;
+    this._loadResourcesAsync();
+
+    if (Platform.OS !== 'web') {
+      Updates.addListener(({type}) => {
+        if (type === Updates.EventType.DOWNLOAD_FINISHED) {
+          if (this.state.isAppReady) {
+            this._promptForReload();
+          } else {
+            this._shouldPromptForReload = true;
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -71,38 +61,49 @@ export default class App extends React.Component {
   _loadResourcesAsync = async () => {
     SplashScreen.hide();
     try {
-      await Promise.all([this._loadAssetsAsync(), this._loadDataAsync()]);
+      await Promise.all([
+        this._loadEventAsync(),
+        Font.loadAsync({
+          'open-sans-bold': require('./src/assets/OpenSans-Bold.ttf'),
+          'open-sans': require('./src/assets/OpenSans-Regular.ttf'),
+          'open-sans-semibold': require('./src/assets/OpenSans-SemiBold.ttf'),
+          ...Ionicons.font,
+        }),
+        ...this._loadAssetsAsync(),
+        loadSavedTalksAsync(),
+        this._loadLinkingUrlAsync(),
+      ]);
     } catch (e) {
+      console.error(e);
       // if we can't load any data we should probably just not load the app
       // and give people an option to hit reload
     } finally {
-      this.setState({isAppReady: true}, () => {
-        Animated.timing(this.splashVisibility, {
-          toValue: 0,
-          duration: 400,
-          useNativeDriver: true,
-        }).start(() => {
-          this.setState({isSplashAnimationComplete: true});
+      if (SHOULD_ANIMATE_IN) {
+        this.setState({isAppReady: true}, () => {
+          Animated.timing(this.splashVisibility, {
+            toValue: 0,
+            duration: 400,
+            useNativeDriver: true,
+          }).start(() => {
+            this.setState({isSplashAnimationComplete: true});
+          });
         });
-      });
+      } else {
+        this.setState({isAppReady: true, isSplashAnimationComplete: true});
+      }
     }
   };
 
-  _loadDataAsync = () => {
-    return Promise.all([
-      loadSavedTalksAsync(),
-      this._loadEventAsync(),
-      this._loadLinkingUrlAsync(),
-    ]);
-  };
-
   _loadLinkingUrlAsync = async () => {
-    const initialLinkingUri = await Linking.getInitialURL();
-    console.log(initialLinkingUri);
-    this.setState({initialLinkingUri: initialLinkingUri});
+    if (Platform.OS !== 'web') {
+      const initialLinkingUri = await Linking.getInitialURL();
+      console.log(initialLinkingUri);
+      this.setState({initialLinkingUri: initialLinkingUri});
+    }
   };
 
   _loadEventAsync = async () => {
+    console.time('_loadEventAsync');
     let diskFetcher = this._fetchEventFromDiskAsync();
     let networkFetcher = this._fetchEventFromNetworkAsync();
     let quickestResult = await Promise.race([diskFetcher, networkFetcher]);
@@ -112,6 +113,7 @@ export default class App extends React.Component {
         // alert('oh no! unable to get data');
       }
     }
+    console.timeEnd('_loadEventAsync');
   };
 
   _fetchEventFromDiskAsync = async () => {
@@ -146,26 +148,21 @@ export default class App extends React.Component {
     this.setState({schedule: event});
   };
 
-  _loadAssetsAsync = async () => {
-    return Promise.all([
-      Font.loadAsync({
-        'open-sans-bold': require('./src/assets/OpenSans-Bold.ttf'),
-        'open-sans': require('./src/assets/OpenSans-Regular.ttf'),
-        'open-sans-semibold': require('./src/assets/OpenSans-SemiBold.ttf'),
-        ...Ionicons.font,
-      }),
+  _loadAssetsAsync = () => {
+    if (Platform.OS === 'web') return [];
+    return [
       Asset.fromModule(require('./src/assets/logo.png')).downloadAsync(),
       Asset.loadAsync(StackAssets),
-    ]);
+    ];
   };
 
-  _cacheSplashResourcesAsync = async () => {
+  _cacheSplashResourcesAsync = () => {
     const splash = require('./src/assets/splash-icon.png');
     return Asset.fromModule(splash).downloadAsync();
   };
 
   render() {
-    if (!this.state.isSplashReady) {
+    if (Platform.OS !== 'web' && !this.state.isSplashReady) {
       return (
         <AppLoading
           startAsync={this._cacheSplashResourcesAsync}
@@ -179,40 +176,17 @@ export default class App extends React.Component {
     }
 
     return (
-      <View style={{flex: 1}}>
-        {this.state.isAppReady && this.state.schedule ? (
-          <ApolloProvider client={client}>
-            <AppNavigator
-              screenProps={{
-                event: this.state.schedule,
-                initialLinkingUri: this.state.initialLinkingUri,
-              }}
-            />
-          </ApolloProvider>
-        ) : null}
-
-        {this.state.isSplashAnimationComplete ? null : (
-          <Animated.View
-            style={{
-              ...StyleSheet.absoluteFillObject,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: Constants.manifest.splash.backgroundColor,
-              opacity: this.splashVisibility,
-            }}>
-            <Animated.Image
-              style={{
-                width: Dimensions.get('window').width,
-                resizeMode: 'contain',
-                transform: [{scale: this.splashVisibility}],
-              }}
-              source={require('./src/assets/splash-icon.png')}
-              onLoad={this._loadResourcesAsync}
-            />
-          </Animated.View>
+      <ApolloProvider client={client}>
+        {this.state.schedule ? (
+          <AppNavigator
+            screenProps={{
+              event: this.state.schedule,
+            }}
+          />
+        ) : (
+          <View />
         )}
-        <StatusBar barStyle="light-content" />
-      </View>
+      </ApolloProvider>
     );
   }
 }
