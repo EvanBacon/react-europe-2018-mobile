@@ -13,7 +13,7 @@ import {createBrowserApp} from '@react-navigation/web';
 import {Platform} from 'react-native';
 
 const createApp = Platform.select({
-  // web: createBrowserApp,
+  web: createBrowserApp,
   default: createAppContainer,
 });
 // const createMaterialTopTabNavigator = createBottomTabNavigator;
