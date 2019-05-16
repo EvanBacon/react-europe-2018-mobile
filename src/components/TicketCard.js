@@ -1,7 +1,7 @@
 import React from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
 import {Button, Card} from 'react-native-paper';
-import QRCode from 'react-native-qrcode';
+import QRCode from '../../libs/react-native-qrcode';
 import {withNavigation} from 'react-navigation';
 
 import {Colors, FontSizes} from '../constants';
