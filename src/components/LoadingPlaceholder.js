@@ -16,7 +16,7 @@ export default class LoadingPlaceholder extends React.Component {
         () => {
           this.setState({isReady: true});
         },
-        Platform.OS === 'ios' ? 250 : 500
+        Platform.OS !== 'android' ? 250 : 500
       );
     }
   }
@@ -26,7 +26,7 @@ export default class LoadingPlaceholder extends React.Component {
       return (
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <ActivityIndicator
-            color={Platform.OS === 'android' ? Colors.blue : '#888'}
+            color={Platform.OS !== 'ios' ? Colors.blue : '#888'}
             size="large"
           />
         </View>
