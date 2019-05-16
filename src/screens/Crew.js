@@ -7,12 +7,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import FadeIn from 'react-native-fade-in-image';
+import FadeIn from '../../libs/FadeIn';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import CachedImage from '../components/CachedImage';
 import LoadingPlaceholder from '../components/LoadingPlaceholder';
 import {BoldText, RegularText, SemiBoldText} from '../components/StyledText';
+import {openBrowserAsync} from '../../libs/openBrowserAsync';
 
 class CrewRow extends React.Component {
   render() {
@@ -48,7 +49,7 @@ class CrewRow extends React.Component {
     try {
       await Linking.openURL(`twitter://user?screen_name=` + twitter);
     } catch (e) {
-      WebBrowser.openBrowserAsync('https://twitter.com/' + twitter);
+      openBrowserAsync('https://twitter.com/' + twitter);
     }
   };
 }
