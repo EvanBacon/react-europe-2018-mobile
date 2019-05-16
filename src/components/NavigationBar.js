@@ -1,8 +1,9 @@
-import { Constants } from 'expo';
+import {Constants} from 'expo';
 import React from 'react';
-import { Animated, Platform, StyleSheet, View } from 'react-native';
+import {Animated, Platform, StyleSheet, View} from 'react-native';
 
-import { Colors, Layout } from '../constants';
+import {Colors, Layout} from '../constants';
+// import HeaderContainer from './HeaderContainer';
 
 export default class NavigationBar extends React.Component {
   render() {
@@ -16,7 +17,9 @@ export default class NavigationBar extends React.Component {
   _renderAnimated = () => {
     return (
       <>
-        <View style={[styles.navigationBarContainer, this.props.style]} pointerEvents="none">
+        <View
+          style={[styles.navigationBarContainer, this.props.style]}
+          pointerEvents="none">
           <Animated.View
             style={[
               StyleSheet.absoluteFill,
