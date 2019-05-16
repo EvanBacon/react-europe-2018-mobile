@@ -58,7 +58,14 @@ export default class Speakers extends React.Component {
           renderItem={this._renderItem}
           renderSectionHeader={this._renderSectionHeader}
           sections={[
-            {data: this.props.screenProps.event.speakers, title: 'Speakers'},
+            {
+              data: this.props.screenProps.event.speakers.sort((a, b) => {
+                if (a.name < b.name) return -1;
+                else if (a.name > b.name) return 1;
+                return 0;
+              }),
+              title: 'Speakers',
+            },
           ]}
           keyExtractor={(item, index) => index.toString()}
         />
