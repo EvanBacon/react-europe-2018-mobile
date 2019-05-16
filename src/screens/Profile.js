@@ -31,7 +31,7 @@ class Profile extends React.Component {
     );
   }
 }
-
+Profile.path = '';
 @withNavigation
 class DeferredProfileContent extends React.Component {
   state = {

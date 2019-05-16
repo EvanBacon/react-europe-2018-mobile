@@ -26,6 +26,8 @@ class Contacts extends React.Component {
   }
 }
 
+Contacts.path = '';
+
 @withNavigation
 class DeferredContactsContent extends React.Component {
   state = {

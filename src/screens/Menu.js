@@ -116,4 +116,6 @@ class MenuScreen extends Component {
   }
 }
 
+MenuScreen.path = '';
+
 export default MenuScreen;

@@ -144,6 +144,7 @@ const StaffCheckinListsNavigation = createStackNavigator(
   DefaultStackConfig
 );
 
+ScheduleStackNavigator.path = '';
 const PrimaryTabNavigator = createBottomTabNavigator(
   {
     Home: Screens.Home,
@@ -182,6 +183,8 @@ const PrimaryTabNavigator = createBottomTabNavigator(
     },
   }
 );
+
+PrimaryTabNavigator.path = '';
 
 const Navigation = createStackNavigator(
   {

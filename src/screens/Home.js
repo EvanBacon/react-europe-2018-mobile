@@ -5,6 +5,7 @@ import {
   Animated,
   AsyncStorage,
   Image,
+  Text,
   Platform,
   StyleSheet,
   TouchableOpacity,
@@ -121,7 +122,9 @@ class Home extends React.Component {
       </View>
     );
   }
-
+  // renderTitle={() => (
+  //   <SemiBoldText style={styles.headerText}>React Europe</SemiBoldText>
+  // )}
   _openTickets = () => {
     Linking.openURL(this.state.event.websiteUrl + '#tickets');
   };
