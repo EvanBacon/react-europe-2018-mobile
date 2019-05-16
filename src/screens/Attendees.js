@@ -101,7 +101,7 @@ class DeferredAttendeesContent extends React.Component {
     if (this.state.ready) {
       return;
     }
-    setTimeout(() => this.setState({ready: true}), 200);
+    this.setState({ready: true});
   }
 
   _handlePressRow = attendee => {
