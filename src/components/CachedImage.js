@@ -1,16 +1,26 @@
 import sha256 from 'crypto-js/sha256';
 import {Asset, FileSystem} from 'expo';
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, Platform, StyleSheet, View} from 'react-native';
 
 export default class CachedImage extends React.Component {
   state = {
     source: null,
   };
 
+  constructor(props) {
+    super(props);
+    if (Platform.OS === 'web') {
+      this.state = {source: props.source};
+    }
+  }
+
   unmounting: false;
 
   async componentDidMount() {
+    if (this.state.source) {
+      return;
+    }
     let source = this.props.source;
 
     try {
