@@ -1,6 +1,6 @@
 import React from 'react';
 import {SectionList, StyleSheet, View} from 'react-native';
-import FadeIn from 'react-native-fade-in-image';
+import FadeIn from '../../libs/FadeIn';
 import {RectButton, ScrollView} from '../components/PlatformComponents';
 import CachedImage from '../components/CachedImage';
 import LoadingPlaceholder from '../components/LoadingPlaceholder';

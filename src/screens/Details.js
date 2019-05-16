@@ -7,11 +7,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  WebView,
 } from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
-import FadeIn from 'react-native-fade-in-image';
-
+import FadeIn from '../../libs/FadeIn';
+import WebView from '../../libs/WebView';
 import AnimatedScrollView from '../components/AnimatedScrollView';
 import CachedImage from '../components/CachedImage';
 import CloseButton from '../components/CloseButton';

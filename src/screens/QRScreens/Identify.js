@@ -7,6 +7,7 @@ import QR_QUERY from '../../data/qrQuery';
 import UPDATE_PUSH_TOKEN_QUERY from '../../data/updatePushTokenQuery';
 import client from '../../utils/gqlClient';
 import QRScreen from './QRScreen';
+import {Platform} from '@unimodules/core';
 
 export default class QRScannerModalNavigation extends React.Component {
   state = {
@@ -24,6 +25,8 @@ export default class QRScannerModalNavigation extends React.Component {
   }
 
   async registerForPushNotificationsAsync(uuid) {
+    if (Platform.OS === 'web') return;
+
     const {status: existingStatus} = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
     );

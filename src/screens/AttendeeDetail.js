@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
-import FadeIn from 'react-native-fade-in-image';
+import FadeIn from '../../libs/FadeIn';
 import {Button} from 'react-native-paper';
 
 import AnimatedScrollView from '../components/AnimatedScrollView';
