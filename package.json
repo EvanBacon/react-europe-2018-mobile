@@ -9,7 +9,7 @@
     "devtools": "react-devtools",
     "lint": "eslint . --ext .js --quiet",
     "serve": "serve ./web-build",
-    "predeploy:web": "expo build:web --no-polyfill",
+    "predeploy:web": "expod build:web --no-polyfill",
     "deploy:web": "netlify deploy --prod"
   },
   "dependencies": {
@@ -40,6 +40,7 @@
     "react-native-markdown-renderer": "^3.2.8",
     "react-native-paper": "2.15.2",
     "react-native-qrcode": "^0.2.6",
+    "react-native-reanimated": "git://github.com/EvanBacon/react-native-reanimated.git",
     "react-native-web": "^0.11.2",
     "react-navigation": "~3.9",
     "react-navigation-tabs": "^2",

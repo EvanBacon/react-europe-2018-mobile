@@ -1,5 +1,5 @@
 import {Ionicons} from '@expo/vector-icons';
-import {Linking, Notifications, WebBrowser} from 'expo';
+import {Linking, Notifications} from 'expo';
 import React from 'react';
 import {
   Animated,
@@ -22,7 +22,7 @@ import TalksUpNext from '../components/TalksUpNext';
 import {Colors, FontSizes, Layout} from '../constants';
 import {HideWhenConferenceHasEnded, ShowWhenConferenceHasEnded} from '../utils';
 import {saveNewContact} from '../utils/storage';
-
+import {openBrowserAsync} from '../../libs/openBrowserAsync';
 class Home extends React.Component {
   state = {
     scrollY: new Animated.Value(0),
@@ -116,6 +116,7 @@ class Home extends React.Component {
         </AnimatedScrollView>
 
         <NavigationBar animatedBackgroundOpacity={headerOpacity} />
+
         {this._addLinkingListener()}
       </View>
     );
@@ -187,9 +188,9 @@ class DeferredHomeContent extends React.Component {
     if (this.state.ready) {
       return;
     }
-    setTimeout(() => {
-      this.setState({ready: true});
-    }, 200);
+    // setTimeout(() => {
+    this.setState({ready: true});
+    // }, 200);
   }
   _handleNotification = notification => {
     let navigation = this.props.navigation;
@@ -197,7 +198,7 @@ class DeferredHomeContent extends React.Component {
     if (notification && notification.data && notification.data.action) {
       switch (notification.data.action) {
         case 'newURL':
-          WebBrowser.openBrowserAsync(notification.data.url);
+          openBrowserAsync(notification.data.url);
           break;
         case 'newContact': {
           console.log(notification);
@@ -367,8 +368,8 @@ class DeferredHomeContent extends React.Component {
     );
   };
 
-  _handlePressCOCButton = () => {
-    WebBrowser.openBrowserAsync(this.state.event.cocUrl);
+  _handlePressCOCButton = async () => {
+    openBrowserAsync(this.state.event.cocUrl);
   };
 
   _handlePressQRButton = () => {
@@ -384,14 +385,16 @@ class DeferredHomeContent extends React.Component {
   };
 
   _handlePressTwitterButton = async () => {
+    if (Platform.OS === 'web') {
+      openBrowserAsync('https://twitter.com/' + this.state.event.twitterHandle);
+      return;
+    }
     try {
       await Linking.openURL(
         `twitter://user?screen_name=` + this.state.event.twitterHandle
       );
     } catch (e) {
-      WebBrowser.openBrowserAsync(
-        'https://twitter.com/' + this.state.event.twitterHandle
-      );
+      openBrowserAsync('https://twitter.com/' + this.state.event.twitterHandle);
     }
   };
 
@@ -402,7 +405,7 @@ class DeferredHomeContent extends React.Component {
         ',' +
         this.state.event.venueCountry
     );
-    WebBrowser.openBrowserAsync('https://www.google.com/maps/search/' + params);
+    openBrowserAsync('https://www.google.com/maps/search/' + params);
   };
 }
 
