@@ -1,6 +1,6 @@
 import React from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
-import FadeIn from 'react-native-fade-in-image';
+import FadeIn from '../../libs/FadeIn';
 import {withNavigation} from 'react-navigation';
 
 import {Colors, FontSizes} from '../constants';
