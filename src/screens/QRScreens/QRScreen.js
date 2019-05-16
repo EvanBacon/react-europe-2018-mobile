@@ -1,4 +1,5 @@
-import {BarCodeScanner, Permissions} from 'expo';
+import {Permissions} from 'expo';
+import {Camera} from '../../../libs/expo-camera/build/index';
 import React from 'react';
 import {
   ActivityIndicator,
@@ -48,6 +49,7 @@ export default class QRScreen extends React.Component {
   };
 
   _onBarCodeRead = data => {
+    console.log('did Read Bar Code', data);
     this.setState({showQRScanner: false}, () => {
       this.props.onBarCodeScanned(data);
     });
@@ -57,7 +59,11 @@ export default class QRScreen extends React.Component {
     return (
       <View style={{flex: 1, backgroundColor: 'black'}}>
         {this.state.showQRScanner && this.state.hasCameraPermission ? (
-          <BarCodeScanner
+          <Camera
+            type={'back'}
+            barCodeScannerSettings={{
+              barCodeTypes: ['qr'],
+            }}
             onBarCodeScanned={this.props.loading ? null : this._onBarCodeRead}
             style={{flex: 1}}
           />
