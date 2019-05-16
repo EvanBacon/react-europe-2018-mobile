@@ -13,6 +13,47 @@ import {
 import CachedImage from '../components/CachedImage';
 import {Colors, Layout} from '../constants';
 
+const ListHeaderComponent = () => (
+  <View
+    style={{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      maxHeight: 240 + Layout.notchHeight,
+      minHeight: 240 + Layout.notchHeight,
+    }}>
+    <CachedImage
+      source={require('../assets/hero.png')}
+      style={[
+        StyleSheet.absoluteFill,
+        {
+          overflow: 'hidden',
+          resizeMode: 'cover',
+          position: 'absolute',
+        },
+      ]}
+    />
+    <View
+      style={[
+        StyleSheet.absoluteFill,
+        {
+          backgroundColor: 'rgba(0,0,0,0.5)',
+        },
+      ]}
+    />
+    <Image
+      source={require('../assets/logo.png')}
+      style={[
+        {
+          width: 220,
+          height: 100,
+          resizeMode: 'contain',
+        },
+      ]}
+    />
+  </View>
+);
+
 class MenuScreen extends Component {
   static navigationOptions = {
     title: 'Menu',
@@ -30,49 +71,14 @@ class MenuScreen extends Component {
       <View style={{flex: 1}}>
         <StatusBar barStyle="light-content" />
         <FlatList
+          style={{flex: 1}}
           data={[
             {key: 'Speakers'},
             {key: 'Crew'},
             {key: 'Sponsors'},
             {key: 'Attendees'},
           ]}
-          ListHeaderComponent={() => (
-            <View
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: 240 + Layout.notchHeight,
-              }}>
-              <CachedImage
-                source={require('../assets/hero.png')}
-                style={{
-                  height: 240 + Layout.notchHeight,
-                  width: Layout.window.width,
-                  resizeMode: 'cover',
-                  position: 'absolute',
-                }}
-              />
-              <View
-                style={[
-                  StyleSheet.absoluteFill,
-                  {
-                    backgroundColor: 'rgba(0,0,0,0.5)',
-                  },
-                ]}
-              />
-              <Image
-                source={require('../assets/logo.png')}
-                style={[
-                  {
-                    width: 220,
-                    height: 100,
-                    resizeMode: 'contain',
-                  },
-                ]}
-              />
-            </View>
-          )}
+          ListHeaderComponent={ListHeaderComponent}
           ItemSeparatorComponent={() => (
             <View
               style={{
