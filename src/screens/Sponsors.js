@@ -1,4 +1,3 @@
-import {WebBrowser} from 'expo';
 import React from 'react';
 import {SectionList, StyleSheet, View} from 'react-native';
 import FadeIn from 'react-native-fade-in-image';
@@ -7,6 +6,7 @@ import CachedImage from '../components/CachedImage';
 import LoadingPlaceholder from '../components/LoadingPlaceholder';
 import {RegularText, SemiBoldText} from '../components/StyledText';
 import {Colors, FontSizes, Layout} from '../constants';
+import {openBrowserAsync} from '../../libs/openBrowserAsync';
 
 const ClipBorderRadius = ({children, style}) => {
   return (
@@ -77,11 +77,11 @@ class SponsorRow extends React.Component {
   }
 
   _handlePress = () => {
-    WebBrowser.openBrowserAsync(this.props.item.url);
+    openBrowserAsync(this.props.item.url);
   };
 
   _handlePressJobUrl = () => {
-    WebBrowser.openBrowserAsync(this.props.item.jobUrl);
+    openBrowserAsync(this.props.item.jobUrl);
   };
 }
 
