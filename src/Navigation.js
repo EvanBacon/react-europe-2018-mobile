@@ -116,6 +116,8 @@ const MenuNavigation = createStackNavigator(
   DefaultStackConfig
 );
 
+DynamicScheduleNavigation.path = '';
+
 const ScheduleStackNavigator = createStackNavigator(
   {
     Schedule: DynamicScheduleNavigation,
@@ -144,7 +146,6 @@ const StaffCheckinListsNavigation = createStackNavigator(
   DefaultStackConfig
 );
 
-ScheduleStackNavigator.path = '';
 const PrimaryTabNavigator = createBottomTabNavigator(
   {
     Home: Screens.Home,
