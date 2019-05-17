@@ -11,13 +11,12 @@ import {RegularText} from './StyledText';
 export default class TicketCard extends React.Component {
   render() {
     const {ticket} = this.props;
-
     return (
       <Card key={ticket.id}>
         <Card.Content>
-          <Card.Title>This ticket gives you access to:</Card.Title>
+          <Card.Title title="This ticket gives you access to:" />
           {ticket.checkinLists.map(ch => (
-            <Card.Title key={ch.id}>✓ {ch.name}</Card.Title>
+            <Card.Title key={ch.id} title={`✓ ${ch.name}`} />
           ))}
           <QRCode
             style={{flex: 1}}
