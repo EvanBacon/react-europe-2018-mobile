@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
 import {Gravatar} from 'react-native-gravatar';
-import {Button, Card } from 'react-native-paper';
+import {Button, Title, Card} from 'react-native-paper';
 import {withNavigation} from 'react-navigation';
 import {Markdown} from '../components/PlatformComponents';
 import AnimatedScrollView from '../components/AnimatedScrollView';
@@ -120,13 +120,11 @@ class DeferredCheckedInAttendeeInfoContent extends React.Component {
 
         <Card>
           <Card.Content>
-            <Card.Title>
+            <Title>
               {checkedInAttendee.firstName + ' ' + checkedInAttendee.lastName}{' '}
-            </Card.Title>
-            <Card.Title>
-              Ticket Name: {checkedInAttendee.ticket.name}{' '}
-            </Card.Title>
-            <Card.Title>Ticket Ref: {checkedInAttendee.ref} </Card.Title>
+            </Title>
+            <Title>Ticket Name: {checkedInAttendee.ticket.name} </Title>
+            <Title>Ticket Ref: {checkedInAttendee.ref} </Title>
             <Markdown>{checkedInAttendee.checkinMessage}</Markdown>
           </Card.Content>
         </Card>
@@ -141,7 +139,7 @@ class DeferredCheckedInAttendeeInfoContent extends React.Component {
         </Button>
         {checkedInAttendee.checkins && checkedInAttendee.checkins.length > 0 ? (
           <View>
-            <Card.Title>Previous Checkin</Card.Title>
+            <Title>Previous Checkin</Title>
             <CheckinCard checkins={checkedInAttendee.checkins} />
           </View>
         ) : null}

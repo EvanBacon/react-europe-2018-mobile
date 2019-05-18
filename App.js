@@ -11,6 +11,7 @@ import AppNavigator from './src/Navigation';
 import {saveSchedule, setEvent} from './src/utils';
 import client from './src/utils/gqlClient';
 import {loadSavedTalksAsync} from './src/utils/storage';
+import NavigationService from './src/NavigationService';
 
 const SHOULD_ANIMATE_IN = true;
 export default class App extends React.Component {
@@ -181,6 +182,9 @@ export default class App extends React.Component {
           <AppNavigator
             screenProps={{
               event: this.state.schedule,
+            }}
+            ref={navigatorRef => {
+              NavigationService.setTopLevelNavigator(navigatorRef);
             }}
           />
         ) : (

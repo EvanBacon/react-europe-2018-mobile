@@ -1,12 +1,13 @@
 import React from 'react';
 import {Animated, AsyncStorage, Platform, View} from 'react-native';
 import {View as AnimatableView} from 'react-native-animatable';
-import {Button, Card} from 'react-native-paper';
+import {Button, Card, Title} from 'react-native-paper';
 import {withNavigation} from 'react-navigation';
 
 import AnimatedScrollView from '../components/AnimatedScrollView';
 import {Markdown} from '../components/PlatformComponents';
 import {Colors, Layout} from '../constants';
+import NavigationService from '../NavigationService';
 
 class TicketInstructions extends React.Component {
   state = {
@@ -91,12 +92,16 @@ class DeferredTicketInstructionsContent extends React.Component {
       <AnimatableView animation="fadeIn" useNativeDriver duration={800}>
         <Card>
           <Card.Content>
-            <Card.Title>{ticket.firstName + ' ' + ticket.lastName} </Card.Title>
-            <Card.Title>Ticket Ref: {ticket.ref} </Card.Title>
+            <Title>{ticket.firstName + ' ' + ticket.lastName} </Title>
+            <Title>Ticket Ref: {ticket.ref} </Title>
             <Markdown>{ticket.mobileMessage}</Markdown>
           </Card.Content>
         </Card>
-        <Button raised onPress={() => this.props.navigation.goBack()}>
+        <Button
+          raised
+          onPress={() => {
+            NavigationService.goBack();
+          }}>
           Close
         </Button>
       </AnimatableView>

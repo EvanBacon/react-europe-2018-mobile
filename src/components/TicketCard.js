@@ -1,6 +1,6 @@
 import React from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
-import {Button, Card} from 'react-native-paper';
+import {Button, Title, Card} from 'react-native-paper';
 import QRCode from '../../libs/react-native-qrcode';
 import {withNavigation} from 'react-navigation';
 
@@ -14,9 +14,9 @@ export default class TicketCard extends React.Component {
     return (
       <Card key={ticket.id}>
         <Card.Content>
-          <Card.Title title="This ticket gives you access to:" />
+          <Title title="This ticket gives you access to:" />
           {ticket.checkinLists.map(ch => (
-            <Card.Title key={ch.id} title={`✓ ${ch.name}`} />
+            <Title key={ch.id} title={`✓ ${ch.name}`} />
           ))}
           <QRCode
             style={{flex: 1}}

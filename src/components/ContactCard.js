@@ -1,6 +1,6 @@
 import React from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import {Button, Card, Paragraph} from 'react-native-paper';
+import {Button, Title, Card, Paragraph} from 'react-native-paper';
 import {withNavigation} from 'react-navigation';
 
 import CachedImage from '../components/CachedImage';
@@ -20,9 +20,7 @@ export default class ContactCard extends React.Component {
           <GravatarImage style={styles.avatarImage} email={contact.email} />
           <View style={{flex: 1}}>
             <Card.Content>
-              <Card.Title>
-                {contact.firstName + ' ' + contact.lastName}
-              </Card.Title>
+              <Title>{contact.firstName + ' ' + contact.lastName}</Title>
               {bio === '' ? null : <Paragraph>{bio}</Paragraph>}
             </Card.Content>
 
